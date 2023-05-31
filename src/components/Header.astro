@@ -2,18 +2,56 @@
 import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
 ---
+<style>
+	header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;	
+		display: flex;
+		padding: 0 25px;
+	}
+	#inner-header {
+		width: 100%;
+		max-width: 1000px;
+		height: 100%;
+		margin: 0 auto;
+		display: flex;
+	}
+	header.scrolled {
 
+	}
+	header nav {
+		margin: auto 25px;
+	}
+	h2 {
+		color: white;
+		margin: auto 0;
+		font-size: 2.5rem;
+	}
+</style>
+<script>
+	const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+	$(function () {
+  $(document).scroll(function () {
+    var $header = $("header");
+	const alpha = clamp($(this).scrollTop()/($(window).height()/3), 0, 1);
+	$header.css("background-color", `rgba(0, 0, 0, ${alpha})`);
+    //$header.toggleClass('scrolled', $(this).scrollTop() > $header.height());
+  });
+});
+</script>
 <header>
-	<h2>
-		{SITE_TITLE}
-	</h2>
-	<nav>
-		<HeaderLink href="/">Home</HeaderLink>
-		<HeaderLink href="/blog">Blog</HeaderLink>
-		<HeaderLink href="/about">About</HeaderLink>
-		<HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">Twitter</HeaderLink>
-		<HeaderLink href="https://github.com/withastro/astro" target="_blank">GitHub</HeaderLink>
-	</nav>
+	<div id="inner-header">
+		<h2>
+			{SITE_TITLE}
+		</h2>
+		<nav>
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
+			<HeaderLink href="/about">About</HeaderLink>
+		</nav>
+	</div>
 </header>
 <style>
 	header {
