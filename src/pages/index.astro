@@ -15,17 +15,26 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<Header title={SITE_TITLE} />
 		<main>
 			<style>
-				#cogs-section {
+				#start-section,
+                #cogs-section {
 					width: 100vw;
 					height: 100vh;
 					display: flex;
 					background-color: rgb(171, 197, 208);
 				}
+                #start-section {
+                    background-image: url("hospital.jpg");
+                    background-size: cover;
+                    background-position: center;
+                    filter: blur(8px);
+                }
 				#congs-section img {
 					width: 100%;
 					height: 100%;
 				}
 			</style>
+            <section id="start-section"> 
+            </section>
 			<section id="cogs-section">
 				<Cogs></Cogs>
 			</section>

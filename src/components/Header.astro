@@ -10,6 +10,9 @@ import { SITE_TITLE } from '../consts';
 		right: 0;	
 		display: flex;
 		padding: 0 25px;
+        background: rgba(0, 0, 0, 0);
+        transition: background 0.5s ease-out;
+        z-index: 1;
 	}
 	#inner-header {
 		width: 100%;
@@ -19,7 +22,8 @@ import { SITE_TITLE } from '../consts';
 		display: flex;
 	}
 	header.scrolled {
-
+        background: rgba(0, 0, 0, 1);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	}
 	header nav {
 		margin: auto 25px;
@@ -35,9 +39,7 @@ import { SITE_TITLE } from '../consts';
 	$(function () {
   $(document).scroll(function () {
     var $header = $("header");
-	const alpha = clamp($(this).scrollTop()/($(window).height()/3), 0, 1);
-	$header.css("background-color", `rgba(0, 0, 0, ${alpha})`);
-    //$header.toggleClass('scrolled', $(this).scrollTop() > $header.height());
+    $header.toggleClass('scrolled', $(this).scrollTop() > $header.height());
   });
 });
 </script>
